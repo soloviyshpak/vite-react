@@ -2,22 +2,27 @@ import { useState } from "react";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
-  console.log(count)
+  function toggleIsOpen() {
+    setIsOpen((prev) => !prev);
+  }
+
   return (
     <>
-      {/* <span className="cross">&times;</span> */}
-      {/* <button>Начать</button> */}
+      {isOpen ? <span onClick={toggleIsOpen} className="cross">&times;</span> : <button onClick={toggleIsOpen}>Начать</button>}
 
-      <h1>Vite + React = Love</h1>
+    {isOpen && 
+    <>
+      <h1>Vite + React = {count >= 3 ? "LOVE" : ""}</h1>
 
-      {/* <div className="logo-container">
-        <img src="/vite.svg" className="logo" alt="Vite logo" />
+      <div className="logo-container">
+        <img src="/vite.svg" className={`logo ${count >= 1 ? "active" : ""}`} alt="Vite logo" />
         <p>+</p>
-        <img src="/react.svg" className="logo" alt="React logo" />
+        <img src="/react.svg" className={`logo ${count >= 2 ? "active" : ""}`} alt="React logo" />
         <p>=</p>
-        <img src="/love.svg" className="logo" alt="Love logo" />
-      </div> */}
+        <img src="/love.svg" className={`logo ${count >= 3 ? "active" : ""}`} alt="Love logo" />
+      </div>
 
       <hr />
 
@@ -29,6 +34,10 @@ function App() {
           <button onClick={() => setCount(0)}>Reset</button>
         </div>
       </div>
+    </>
+    }
+
+      
     </>
   );
 }
