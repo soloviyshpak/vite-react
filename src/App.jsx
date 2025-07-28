@@ -1,4 +1,9 @@
+import { useState } from "react";
+
 function App() {
+  const [count, setCount] = useState(0);
+
+  console.log(count)
   return (
     <>
       {/* <span className="cross">&times;</span> */}
@@ -17,11 +22,11 @@ function App() {
       <hr />
 
       <div className="card">
-        <p className="count-paragraph">count is 0</p>
+        <p className="count-paragraph">count is {count}</p>
         <div className="increment-buttons">
-          <button>+1</button>
-          <button>-1</button>
-          <button>Reset</button>
+          <button onClick={() => setCount((prev) => prev + 1 )}>+1</button>
+          <button onClick={() => setCount((prev) => prev - 1 )}>-1</button>
+          <button onClick={() => setCount(0)}>Reset</button>
         </div>
       </div>
     </>
